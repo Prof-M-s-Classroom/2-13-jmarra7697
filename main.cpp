@@ -71,8 +71,23 @@ public:
     }
 
    void insert(int index, T *value) {
-        //TODO:Write a function to insert a new node at a give index. Reuse the pre-written functions for edge cases. Account for missing index
-    }
+        if (index<0 || index>length)
+            cout<<"Index is invalid"<<endl;
+        return;
+        if (index==0) {
+            addHead(value);
+        }
+        if (index==length) {
+            add(value);
+        }
+        else {
+            Node<T>* newNode=new Node<T>(value);
+            Node<T>* temp=get(index-1);
+            newNode-next=temp->next;
+            temp->next=newNode;
+            length++;
+        }
+        return;
 
    void reverselist(){
         //TODO:Write a function to reverse the list using the logic from the slide.
