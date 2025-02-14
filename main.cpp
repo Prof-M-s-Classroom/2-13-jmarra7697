@@ -76,16 +76,39 @@ public:
     }
 
     void deleteNode(int index) {
+    if (index<0 || index>length)
+        cout<<"Index is invalid"<<endl;
+        return;
+        if (index==0) {
+            Node<T> *temp = head;
+            head = head->next;
+            delete temp;
+            length--;
+        }
+        if (index==length) {
+            Node<T> *temp = head;
+            while (temp->next!=NULL)
+                temp = temp->next;
+            delete temp;
+            length--;
+        }
+        else {
+            Node<T>* temp = get(index-1);
+            Node<T>* temp2 = temp->next;
+            temp->next = temp2->next;
+            delete temp2;
+            }
 
-        //TODO:Write the function to delete at the given index. Reuse the pre-written functions for edge cases. Account for missing index.
-    }
+        }
+
+
 
    void insert(int index, T *value) {
         if (index<0 || index>length)
             cout<<"Index is invalid"<<endl;
         return;
         if (index==0) {
-            addHead(value);
+            addhead(value);
         }
         if (index==length) {
             add(value);
@@ -93,7 +116,7 @@ public:
         else {
             Node<T>* newNode=new Node<T>(value);
             Node<T>* temp=get(index-1);
-            newNode-next=temp->next;
+            newNode->next=temp->next;
             temp->next=newNode;
             length++;
         }
@@ -133,5 +156,5 @@ int main() {
     ll->print();
     ll->dellast();
     ll->print();
-    ll->insert(3,s3);
+    ll->deleteNode(3);
 }
