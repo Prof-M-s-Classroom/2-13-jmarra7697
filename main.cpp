@@ -43,6 +43,15 @@ public:
         temp->next = newNode;
         length++;
     }
+    Node<T>* get(int index) {
+        if (index<0 || index>length)
+            return nullptr;
+        Node<T>* temp=head;
+        for (int i=0; i<index;i++) {
+            temp=temp->next;
+        }
+        return temp;
+    }
 
     void addhead(T *value) {
         Node<T> *newNode = new Node<T>(value);
@@ -67,7 +76,8 @@ public:
     }
 
     void deleteNode(int index) {
-       //TODO:Write the function to delete at the given index. Reuse the pre-written functions for edge cases. Account for missing index.
+
+        //TODO:Write the function to delete at the given index. Reuse the pre-written functions for edge cases. Account for missing index.
     }
 
    void insert(int index, T *value) {
@@ -123,4 +133,5 @@ int main() {
     ll->print();
     ll->dellast();
     ll->print();
+    ll->insert(3,s3);
 }
